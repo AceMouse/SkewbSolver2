@@ -13,6 +13,33 @@ char* POSITION_NAME[] = {"TOP_LEFT", "TOP_RIGHT", "MIDDLE", "BOTTOM_LEFT", "BOTT
 char* COLOUR_NAME[] = {"ORANGE", "GREEN", "RED", "BLUE", "WHITE", "YELLOW"};
 
 #define TO_IDX(f,p) ((f)*POSITIONS+(p))
+#define CLOCKWISE 0
+#define ANTI_CLOCKWISE 1
+
+int is_valid(uint8_t* cube);
+uint8_t is_solved(uint8_t* cube);
+uint8_t diff_from_solved(uint8_t* cube);
+void init_cube(uint8_t* cube);
+void print_cube(uint8_t* cube);
+void turn_fl(uint8_t* cube);
+void turn_fr(uint8_t* cube);
+void turn_bl(uint8_t* cube);
+void turn_br(uint8_t* cube);
+void turn(uint8_t* cube, uint8_t pivot, uint8_t anti_clockwise);
+void scramble_cube(uint8_t* cube, uint8_t moves);
+
+
+int main(){
+    uint8_t cube[POSITIONS*FACES];
+    init_cube(cube);
+    printf("%i\n",is_solved(cube));
+    scramble_cube(cube, 20);
+    printf("%i\n",is_solved(cube));
+    print_cube(cube);
+    diff_from_solved(cube);
+    printf("%i\n",is_valid(cube));
+    return 0;
+}
 
 
 int is_valid(uint8_t* cube){
@@ -208,16 +235,5 @@ void scramble_cube(uint8_t* cube, uint8_t moves){
     }
 }
 
-int main(){
-    uint8_t cube[POSITIONS*FACES];
-    init_cube(cube);
-    printf("%i\n",is_solved(cube));
-    scramble_cube(cube, 20);
-    printf("%i\n",is_solved(cube));
-    print_cube(cube);
-    diff_from_solved(cube);
-    printf("%i\n",is_valid(cube));
-    return 0;
-}
 
 
