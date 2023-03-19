@@ -28,7 +28,6 @@ void turn_br(uint8_t* cube);
 void turn(uint8_t* cube, uint8_t pivot, uint8_t anti_clockwise);
 void scramble_cube(uint8_t* cube, uint8_t moves);
 
-
 int main(){
     uint8_t cube[POSITIONS*FACES];
     init_cube(cube);
@@ -40,7 +39,6 @@ int main(){
     printf("%i\n",is_valid(cube));
     return 0;
 }
-
 
 int is_valid(uint8_t* cube){
     uint8_t counts[COLOURS] = {0};
@@ -69,6 +67,7 @@ uint8_t is_solved(uint8_t* cube){
     }
     return res;
 }
+
 uint8_t diff_from_solved(uint8_t* cube){
     uint8_t res = 0;
     for (int f = 0; f<FACES; f++){
@@ -205,9 +204,6 @@ void turn_br(uint8_t* cube){
     cube[TO_IDX(FRONT,TOP_RIGHT)]   = old[TO_IDX(LEFT,TOP_LEFT)];
 }
 
-
-#define CLOCKWISE 0
-#define ANTI_CLOCKWISE 1
 void turn(uint8_t* cube, uint8_t pivot, uint8_t anti_clockwise){
     for(int i = 0; i<=anti_clockwise; i++){
         switch(pivot){
@@ -234,6 +230,3 @@ void scramble_cube(uint8_t* cube, uint8_t moves){
         turn(cube, pivot, anti_clockwise);
     }
 }
-
-
-
